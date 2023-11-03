@@ -51,6 +51,6 @@ meta = dict(
 )
 
 if __name__ == "__main__":
-    # print("find_package", find_packages(exclude=["tests"]))
-    print(meta["package_data"])
+    print("find_package", find_packages(exclude=["tests"]))
+    # print(meta["package_data"])
     setup(**meta)
