@@ -18,7 +18,7 @@ from calvin_env.scene.objects.switch import Switch
 log = logging.getLogger(__name__)
 
 
-REPO_BASE = Path(__file__).parents[2]
+REPO_BASE = Path(__file__).parents[1]
 
 
 class PlayTableScene:

@@ -2,6 +2,7 @@
 
 """Setup calvin_env installation."""
 
+import os
 from os import path as op
 import re
 
@@ -21,6 +22,13 @@ def find_meta(_meta, string):
         return l_match.group(1)
     raise RuntimeError(f"Unable to find {string} string.")
 
+def package_files(directory):
+    paths = []
+    for (path, _, filenames) in os.walk(directory):
+        for filename in filenames:
+            paths.append("/".join(op.join(path, filename).split("/")[1:]))
+    return paths
+
 
 install_requires = [
     l for l in _read("requirements.txt").split("\n") if l and not l.startswith("#") and not l.startswith("-")
@@ -36,11 +44,13 @@ meta = dict(
     keywords="calvin_env".split(),
     author=find_meta(_meta, "__author__"),
     author_email=find_meta(_meta, "__email__"),
-    url=" https://github.com/mees/calvin_env",
+    url="https://github.com/mees/calvin_env",
     packages=find_packages(exclude=["tests"]),
     install_requires=install_requires,
+    package_data={"calvin_env": package_files("calvin_env/data/") + package_files("calvin_env/conf/")}
 )
 
 if __name__ == "__main__":
-    print("find_package", find_packages(exclude=["tests"]))
+    # print("find_package", find_packages(exclude=["tests"]))
+    print(meta["package_data"])
     setup(**meta)
