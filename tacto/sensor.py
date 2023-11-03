@@ -13,7 +13,7 @@ import cv2
 import numpy as np
 import pybullet as p
 import trimesh
-from urdfpy import URDF
+from tacto.urdfpy import URDF
 
 from .renderer_mp import Renderer
 # from .renderer import Renderer
